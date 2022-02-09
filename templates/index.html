@@ -1,6 +1,6 @@
       <h1 class="pt-5 pb-2">Covid Data</h1>
 
-	  <p class="ml-4"><a href="{{ url_for('index') }}">Return to the index.</a></p>
+	  <!--<p class="ml-4"><a href="{{ url_for('index') }}"></a></p> -->
 
 		<table class="table">
 			<tr>
@@ -9,10 +9,8 @@
 				<th>Confirmed</th>
 				<th>Deaths</th>
 				<th>Recovered</th>
-			</tr>
-
-			<!-- here is a for-loop to give us all the socks -->
-			{% for virus in covid %}
+			</tr>         
+		    {% for virus in covid %}
 			<tr>
 				<td>{{ virus.ObservationDate }}</td>
 				<td>{{ virus.State }}</td>
