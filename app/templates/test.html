@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <table class="table">
+		<tr>
+			<th>Observation Date</th>
+			<th>State</th>
+			<th>Confirmed</th>
+			<th>Deaths</th>
+			<th>Recovered</th>
+		</tr>         
+		    {% for virus in covid %}
+			<tr>
+				<td>{{ virus.ObservationDate }}</td>
+				<td>{{ virus.State }}</td>
+				<td>{{ virus.Confirmed }}</td>
+				<td>{{ virus.Deaths }}</td>
+				<td>{{ virus.Recovered }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+</body>
+</html>
