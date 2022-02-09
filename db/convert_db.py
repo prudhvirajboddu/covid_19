@@ -1,37 +1,43 @@
-import sqlite3
-import csv
+# import sqlite3
+# import csv
+# import os
 
-connection = sqlite3.connect('cdata.db')
+# # if os.('covid.db') 
 
-cursor = connection.cursor()
+# connection = sqlite3.connect('covid.db')
 
-create_table = '''CREATE TABLE covid(
-    ObservationDate DATE NOT NULL,
-    State TEXT NOT NULL,
-    Country TEXT NOT NULL,
-    LastUpdate DATE NOT NULL,
-    Confirmed INTEGER NOT NULL,
-    Deaths INTEGER NOT NULL,
-    Recovered INTEGER NOT NULL);
-'''
+# cursor = connection.cursor()
 
-cursor.execute(create_table)
+# create_table = '''CREATE TABLE covid(
+#     SNo INTEGER PRIMARY KEY,
+#     ObservationDate DATE NOT NULL,
+#     State TEXT NOT NULL,
+#     Country TEXT NOT NULL,
+#     LastUpdate DATE NOT NULL,
+#     Confirmed INTEGER NOT NULL,
+#     Deaths INTEGER NOT NULL,
+#     Recovered INTEGER NOT NULL);
+# '''
 
-file = open('/home/prudhvi/covid_19/db/covid_clean_data.csv')
+# cursor.execute(create_table)
 
-contents = csv.reader(file)
+# file = open('/home/prudhvi/covid_19/db/covid_clean_data.csv')
 
-insert_records = "INSERT INTO covid (ObservationDate,State,Country,LastUpdate,Confirmed,Deaths,Recovered) VALUES (?,?,?,?,?,?,?)"
+# contents = csv.reader(file)
 
-cursor.executemany(insert_records, contents)
+# insert_records = "INSERT INTO covid (SNo,ObservationDate,State,Country,LastUpdate,Confirmed,Deaths,Recovered) VALUES (?,?,?,?,?,?,?,?)"
 
-print_stmt = 'SELECT * FROM covid'
+# cursor.executemany(insert_records, contents)
 
-rows = cursor.execute(print_stmt).fetchall()
+# print_stmt = 'SELECT * FROM covid'
 
-for r in rows:
-    print(r)
+# rows = cursor.execute(print_stmt).fetchall()
 
-connection.commit()
+# for r in rows:
+#     print(r)
 
-connection.close()
+# connection.commit()
+
+# connection.close()
+
+# #Pandas contain inbuilt method to export as sql table 
