@@ -1,6 +1,6 @@
 from flask import Flask,render_template,jsonify
 from flask_sqlalchemy import SQLAlchemy,sqlalchemy
-from sqlalchemy import func,extract
+from sqlalchemy import func,extract,and_
 
 db_name='covid.db'
 
@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class Covid(db.Model):
     __tablename__='covid'
     SNo=db.Column(db.Integer,primary_key=True)
-    ObservationDate=db.Column(db.DateTime)
+    ObservationDate=db.Column(db.Date)
     State=db.Column(db.String)
     Country=db.Column(db.String)
     LastUpdate=db.Column(db.String)
@@ -24,54 +24,26 @@ class Covid(db.Model):
     Recovered=db.Column(db.Integer)
 
 
+test=Covid.query.filter(and_()).all()
+
+for i in test:
+    print(i.LastUpdate)
 
 # @app.route('/')
-# @app.route('/covid')
-# def covid():
-#     covid,fields = execute_sql(
-#         'SELECT ObservationDate , State , Country , Confirmed , Deaths  FROM covid '
-#         )
-#     # print(covid)
-#     # return jsonify(Response(json.dumps(covid),mimetype='application/json'))
-#     # return None
-#     column_list = []
-#     for i in fields:
-#         column_list.append(i[0])
-#     print("print final colume_list",column_list)
+# def welcome():
+#     return "Welcome to HomePage. Query Results based on Country name and MMYYYY"
 
-#     jsonData_list = []
+# @app.route('/covid/<country>/<ym>',methods=["GET"])
+# def covid(country,ym):
+#     try:
+#         covid=Covid.query.filter(extract('year',Covid.ObservationDate)==int(ym[-4:])).filter(extract('month',Covid.ObservationDate)==int(ym[0:2]))
+#         # covid=Covid.query.filter(func.lower(Covid.Country)==str.lower(country) and Covid.ObservationDate[0:2]+Covid.ObservationDate[-4:]==ym).all()
+#         return render_template('test.html',covid=covid)
 
-#     for row in covid:
-#         data_dict = {}
-#         for i in range(len(column_list)):
-#             data_dict[column_list[i]] = row[i]
-#         jsonData_list.append(data_dict)
-#     # print(data_dict)
-#     return jsonify({'covid': jsonData_list})
+#     except Exception as e:
+#         error_text = "<p>The error:<br>" + str(e) + "</p>"
+#         hed = '<h1>Something is broken.</h1>'
+#         return hed + error_text
 
-@app.route('/')
-def welcome():
-    return "Welcome to HomePage. Query Results based on Country name and MMYYYY"
-
-@app.route('/covid/<country>/<ym>',methods=["GET"])
-def covid(country,ym):
-    try:
-        # filters=[func.lower(Covid.Country)==str.lower(country)]
-        # filters.append()
-        covid=Covid.query.filter(extract('year',Covid.ObservationDate)==int(ym[-4:])).filter(extract('month',Covid.ObservationDate)==int(ym[0:2]))
-        # covid=Covid.query.filter(func.lower(Covid.Country)==str.lower(country) and Covid.ObservationDate[0:2]+Covid.ObservationDate[-4:]==ym).all()
-        # c_text='<ul>'
-        # for virus in covid:
-        #     c_text+='<td>' + str(virus.ObservationDate) + ' ' + str(virus.State) + '  ' + 
-        #             str(virus.Confirmed)+'  '+str(virus.Deaths)+'  '+str(virus.Recovered)+'</td>'
-        # c_text+='</ul> </table>'
-        return render_template('test.html',covid=covid)
-        # return c_text
-        # return jsonify(covid.ObservationDate)
-    except Exception as e:
-        error_text = "<p>The error:<br>" + str(e) + "</p>"
-        hed = '<h1>Something is broken.</h1>'
-        return hed + error_text
-
-if __name__=='__main__':
-    app.run(host="0.0.0.0",debug=True)
+# if __name__=='__main__':
+#     app.run(host="0.0.0.0",debug=True)
