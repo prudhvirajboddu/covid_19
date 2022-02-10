@@ -33,14 +33,16 @@ def welcome():
 @app.route('/covid/<country>/<ym>', methods=["GET"])
 def covid(country, ym):
     try:
-        covid = Covid.query.filter(func.lower(Covid.Country) == str.lower(country),
-                                   extract('year', Covid.ObservationDate) == int(
+        covid = Covid.query.filter(func.lower(Covid.Country) == str.lower(country), #querying for the country name
+                                   extract('year', Covid.ObservationDate) == int( #querying for year and month 
                                        ym[-4:]),
                                    extract('month', Covid.ObservationDate) == int(
                                        ym[0:2])
                                    ).all()
-
-        return render_template('index.html', covid=covid)
+        if covid:
+            return render_template('index.html', covid=covid)
+        else:
+            return "Search with Available data"
 
     except Exception as e:
         error_text = "<p>The error:<br>" + str(e) + "</p>"
