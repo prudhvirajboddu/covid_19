@@ -1,0 +1,5 @@
+db
+.git
+.github
+__pycache__
+DockerFile
