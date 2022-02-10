@@ -22,10 +22,8 @@ ENV PYTHONUNBUFFERED True
 
 WORKDIR /app
 
-ADD 'app/requirements.txt' .
+COPY . .
 
 RUN pip3 install -r requirements.txt
-
-COPY "app/" .
 
 CMD [ "python" ,"app.py"]

@@ -1,0 +1,6 @@
+#ignorefiles
+.gitignore
+#folders
+db
+__pycache__
+.git
