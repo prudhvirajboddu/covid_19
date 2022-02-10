@@ -12,4 +12,7 @@ docker run -p 5000:5000 prudhvi9999/covid_data:latest
 
 ```
 
+### You can view the application [here](http://coviddata.southindia.azurecontainer.io:5000/)
+
+
 ![](https://github.com/prudhvirajboddu/covid_19/blob/master/process.gif)
