@@ -1,7 +1,7 @@
 name: Build,Push and Run on AWS 
 on:
   push:
-    branches: [ master ]
+    branches: [ testgitflow ]
 jobs:
   build-and-push:
     name: Build and Push to ECR
