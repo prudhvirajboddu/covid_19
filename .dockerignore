@@ -1,5 +1,6 @@
-db
-.git
-.github
-__pycache__
-DockerFile
+*
+.*
+
+#ignoring every file except app dir
+
+!app/
